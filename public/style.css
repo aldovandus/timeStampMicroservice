@@ -1,0 +1,17 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 25px;
+}
+
+h1 {
+  font-weight: bold;
+  text-align:center;
+}
+
+
+p{
+  margin:0 auto;
+  width:50%;
+  text-align:center;
+}
+
