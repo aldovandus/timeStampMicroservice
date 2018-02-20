@@ -8,8 +8,8 @@ app.get("/", function (request, response) {
 });
 
 app.get("/:data", function (request, response) {
-    var data = request.params.data;
   
+  var data = request.params.data;
   var natural;
   var timeStamp;
   
@@ -17,7 +17,7 @@ app.get("/:data", function (request, response) {
     var date = new Date(data);
     var monthName = date.toLocaleString("en-us", { month: "long" });
     timeStamp = Math.floor(date / 1000);
-    if(timeStamp)
+    if(!isNaN(timeStamp))
       natural = monthName + " " + date.getDate() +  ", " + date.getFullYear();
     else
       natural = null;
@@ -30,6 +30,7 @@ app.get("/:data", function (request, response) {
   }
   
   response.json({"unix":timeStamp,"natural": natural});
+  
 });
 
 
