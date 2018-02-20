@@ -1,7 +1,3 @@
-// server.js
-// where your node app starts
-
-// init project
 var express = require('express');
 var app = express();
 
@@ -18,17 +14,22 @@ app.get("/:data", function (request, response) {
   var timeStamp;
   
   if(isNaN(data)){
-    natural = new Date(data);
-    var monthName = natural.toLocaleString("en-us", { month: "long" });
-    timeStamp = Math.floor(natural / 1000);
+    var date = new Date(data);
+    var monthName = date.toLocaleString("en-us", { month: "long" });
+    timeStamp = Math.floor(date / 1000);
+    if(timeStamp)
+      natural = monthName + " " + date.getDate() +  ", " + date.getFullYear();
+    else
+      natural = null;
   }
   else{
-      natural = new Date(data*1000);
-      var monthName = natural.toLocaleString("en-us", { month: "long" });
+      var date = new Date(data * 1000);
+      var monthName = date.toLocaleString("en-us", { month: "long" });
       timeStamp = parseInt(data);
+      natural = monthName + " " + date.getDate() +  ", " + date.getFullYear();
   }
   
-  response.json({"unix":timeStamp,"natural": monthName + " " + natural.getDate() +  ", " + natural.getFullYear()});
+  response.json({"unix":timeStamp,"natural": natural});
 });
 
 
